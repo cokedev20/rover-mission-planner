@@ -1,0 +1,63 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Rover Mission Planner</h2>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex align-items-center gap-3">
+      <label class="form-label mb-0">Rover:</label>
+
+      <select class="form-select"
+              [(ngModel)]="roverSeleccionado"
+              (ngModelChange)="cargarTareas()">
+        <option *ngFor="let rover of rovers" [value]="rover">
+          {{ rover }}
+        </option>
+      </select>
+    </div>
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearTarea">
+      Nueva Tarea
+    </button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Inicio</th>
+          <th>Duración</th>
+          <th>Tipo</th>
+          <th>Estado</th>
+          <th>Latitud</th>
+          <th>Longitud</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tarea of tareas">
+    <td>{{ formatearFecha(tarea.startsAt) }}</td>
+          <td>{{ tarea.durationMinutes }} min</td>
+          <td>{{ tarea.taskType }}</td>
+          <td>{{ tarea.status }}</td>
+          <td>{{ tarea.latitude }}</td>
+          <td>{{ tarea.longitude }}</td>
+        </tr>
+        <tr *ngIf="tareas.length === 0">
+          <td colspan="6" class="text-center text-muted">No hay tareas registradas.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalCrearTarea" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Nueva Tarea</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <app-task-form (tareaCreada)="cargarTareas()"></app-task-form>
+      </div>
+    </div>
+  </div>
+</div>
