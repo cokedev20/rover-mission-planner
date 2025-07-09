@@ -60,4 +60,3 @@ namespace RoverMissionPlanner.Infrastructure.Services
 	}
 
 }
-//data de prueba git

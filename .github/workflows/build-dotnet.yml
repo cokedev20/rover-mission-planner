@@ -39,5 +39,5 @@ jobs:
 
 
     - name: Run tests
-      run: dotnet test RoverMissionPlanner.sln --no-build --verbosity normal
+    - run: dotnet test RoverMissionPlanner.sln --verbosity normal
 
