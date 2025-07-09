@@ -1,10 +1,16 @@
 <form [formGroup]="taskForm" (ngSubmit)="submit()">
   <div class="mb-3">
     <label class="form-label">Nombre del Rover</label>
-  <select class="form-control" formControlName="roverName" [ngClass]="{'is-invalid': submitted && taskForm.get('roverName')?.invalid}">
+ <!--<select class="form-control" formControlName="roverName" [ngClass]="{'is-invalid': submitted && taskForm.get('roverName')?.invalid}">
     <option value="">-- Seleccione un rover --</option>
     <option *ngFor="let rover of rovers" [value]="rover">{{ rover }}</option>
-  </select>
+  </select>-->
+  <input type="text"
+       class="form-control"
+       placeholder="Ingrese el nombre del rover"
+       formControlName="roverName"
+       [ngClass]="{'is-invalid': submitted && taskForm.get('roverName')?.invalid}">
+ 
   </div>
 
   <div class="mb-3">
