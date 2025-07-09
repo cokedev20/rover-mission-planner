@@ -6,6 +6,7 @@ on:
       - '**.cs'
       - '**.csproj'
       - '**.sln'
+      - '.github/workflows/build-api.yml' 
   pull_request:
     paths:
       - '**.cs'
