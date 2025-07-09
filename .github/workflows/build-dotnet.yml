@@ -12,24 +12,30 @@ on:
       - '**.csproj'
       - '**.sln'
 
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x'
 
+
     - name: Restore dependencies
       run: dotnet restore RoverMissionPlanner.sln
 
+
     - name: Build solution
       run: dotnet build RoverMissionPlanner.sln --no-restore --configuration Release
+
 
     - name: Run tests
       run: dotnet test RoverMissionPlanner.sln --no-build --verbosity normal
