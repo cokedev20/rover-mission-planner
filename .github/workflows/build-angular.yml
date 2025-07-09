@@ -2,28 +2,30 @@ name: Build Angular Frontend
 
 on:
   push:
-    branches: [main]
+    paths:
+      - 'rover-mission-frontend/**'
+      - '.github/workflows/build-angular.yml'
   pull_request:
-    branches: [main]
+    paths:
+      - 'rover-mission-frontend/**'
 
 jobs:
   build:
-    name: Build Angular App
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.19.0'  
 
-      - name: Install dependencies
-        working-directory: ./rover-mission-frontend
-        run: npm install
+    - name: Install dependencies
+      run: npm install
+      working-directory: rover-mission-frontend
 
-      - name: Build Angular app
-        working-directory: ./rover-mission-frontend
-        run: npm run build
+    - name: Build Angular app
+      run: npm run build
+      working-directory: rover-mission-frontend
